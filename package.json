@@ -6,7 +6,10 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "migrate": "node-pg-migrate up",
+    "migrate:down": "node-pg-migrate down",
+    "test": "jest"
   },
   "dependencies": {
     "cookie-parser": "^1.4.7",
@@ -14,9 +17,27 @@
     "csurf": "^1.2.2",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "morgan": "^1.10.0"
+    "joi": "^17.9.2",
+    "morgan": "^1.10.0",
+    "pg": "^8.11.1",
+    "node-pg-migrate": "latest"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "nodemon": "^3.1.14",
+    "jest": "^29.6.1"
+  },
+  "node-pg-migrate": {
+    "migrationFolder": "migrations"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "extensionsToTreatAsEsm": [".js"],
+    "transform": {},
+    "testMatch": [
+      "**/test/**/*.test.js"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/test/jest.setup.js"
+    ]
   }
 }
